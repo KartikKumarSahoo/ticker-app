@@ -1,6 +1,6 @@
 {
-  "short_name": "Ticker App",
-  "name": "A React App for Ticker",
+  "short_name": "Live Stock Ticker App",
+  "name": "A React App to show Live Stock data.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#676767",
+  "theme_color": "#4c4c4c",
   "background_color": "#ffffff"
 }

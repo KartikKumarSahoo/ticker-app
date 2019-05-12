@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ticker-app/static/css/main.93c8fbd7.chunk.css",
-    "main.js": "/ticker-app/static/js/main.ceb48d80.chunk.js",
-    "main.js.map": "/ticker-app/static/js/main.ceb48d80.chunk.js.map",
+    "main.js": "/ticker-app/static/js/main.2c408622.chunk.js",
+    "main.js.map": "/ticker-app/static/js/main.2c408622.chunk.js.map",
     "runtime~main.js": "/ticker-app/static/js/runtime~main.fc8b7a9c.js",
     "runtime~main.js.map": "/ticker-app/static/js/runtime~main.fc8b7a9c.js.map",
     "static/js/2.d9241121.chunk.js": "/ticker-app/static/js/2.d9241121.chunk.js",
     "static/js/2.d9241121.chunk.js.map": "/ticker-app/static/js/2.d9241121.chunk.js.map",
     "index.html": "/ticker-app/index.html",
-    "precache-manifest.6fa62eb973ba788ea611d382fcb3a7a1.js": "/ticker-app/precache-manifest.6fa62eb973ba788ea611d382fcb3a7a1.js",
+    "precache-manifest.36322b1f087725be09cbdb798d188ad3.js": "/ticker-app/precache-manifest.36322b1f087725be09cbdb798d188ad3.js",
     "service-worker.js": "/ticker-app/service-worker.js",
     "static/css/main.93c8fbd7.chunk.css.map": "/ticker-app/static/css/main.93c8fbd7.chunk.css.map"
   }

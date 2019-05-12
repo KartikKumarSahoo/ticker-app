@@ -19,6 +19,11 @@ class TickerTable extends Component {
       socket.send('Hello Server!');
     });
 
+    // Handle socket connection error
+    socket.addEventListener('error', event => {
+      this.setState({ error: `Failed to connect "${event.target.url}".` });
+    });
+
     // Listen for messages
     socket.addEventListener('message', event => {
       // console.log('Message from server ', event.data);
@@ -39,6 +44,11 @@ class TickerTable extends Component {
   };
 
   render() {
+    const { error } = this.state;
+    // Show error message when connection fails.
+    if (error) return <div className="error">{error}</div>;
+
+    // Don't show anything till first message is received.
     if (Object.keys(this.state).length === 0) return null;
 
     return (

@@ -10,18 +10,17 @@ function StockChart(props) {
   const chartData = { series: [prices] };
   const initialValue = prices[0] || 0;
   const finalValue = prices[prices.length - 1] || 0;
-  // console.log(initialValue, finalValue);
 
   return (
     <div
       className={`sparkline-chart ${
-        finalValue > initialValue ? 'upward' : 'downward'
+        +finalValue > +initialValue ? 'upward' : 'downward'
       }`}
     >
       <h2>
         History of <span className="stock-name">{stockName}</span> Stock
       </h2>
-      <span className="close" onClick={onClose}>
+      <span className="close" title="Close the chart" onClick={onClose}>
         &#10539;
       </span>
       <ChartistGraph

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { STOCKS_WS_URL } from '../constants';
+import { STOCKS_WS_URL, ERROR_MESSAGE } from '../constants';
 import { timeSince } from '../utils';
 
 class TickerTable extends Component {
@@ -13,34 +13,39 @@ class TickerTable extends Component {
   initWebSocket = () => {
     if (!('WebSocket' in window)) return;
 
-    const socket = new WebSocket(STOCKS_WS_URL);
-    // Connection opened
-    socket.addEventListener('open', event => {
-      socket.send('Hello Server!');
-    });
+    try {
+      const socket = new WebSocket(STOCKS_WS_URL);
+      // Connection opened
+      socket.addEventListener('open', event => {
+        socket.send('Hello Server!');
+      });
 
-    // Handle socket connection error
-    socket.addEventListener('error', event => {
-      this.setState({ error: `Failed to connect "${event.target.url}".` });
-    });
+      // Handle socket connection error
+      socket.addEventListener('error', event => {
+        this.setState({ error: ERROR_MESSAGE });
+      });
 
-    // Listen for messages
-    socket.addEventListener('message', event => {
-      // console.log('Message from server ', event.data);
-      JSON.parse(event.data).forEach(data => {
-        let [name, price] = data;
-        price = price.toFixed(2);
-        const { price: oldPrice } = this.state[name] || {};
+      // Listen for messages
+      socket.addEventListener('message', event => {
+        // console.log('Message from server ', event.data);
+        JSON.parse(event.data).forEach(data => {
+          let [name, price] = data;
+          price = price.toFixed(2);
+          const { price: oldPrice } = this.state[name] || {};
 
-        this.setState({
-          [name]: {
-            price: +price,
-            updatedAt: Date.now(),
-            growth: oldPrice ? (oldPrice > price ? 'down' : 'up') : null,
-          },
+          this.setState({
+            [name]: {
+              price: +price,
+              updatedAt: Date.now(),
+              growth: oldPrice ? (oldPrice > price ? 'down' : 'up') : null,
+            },
+          });
         });
       });
-    });
+    } catch (err) {
+      console.error('Error', err);
+      this.setState({ error: ERROR_MESSAGE });
+    }
   };
 
   render() {

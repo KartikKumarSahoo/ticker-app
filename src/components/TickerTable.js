@@ -16,12 +16,12 @@ class TickerTable extends Component {
     try {
       const socket = new WebSocket(STOCKS_WS_URL);
       // Connection opened
-      socket.addEventListener('open', event => {
+      socket.addEventListener('open', () => {
         socket.send('Hello Server!');
       });
 
       // Handle socket connection error
-      socket.addEventListener('error', event => {
+      socket.addEventListener('error', () => {
         this.setState({ error: ERROR_MESSAGE });
       });
 

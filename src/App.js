@@ -1,5 +1,6 @@
 import React from 'react';
 import TickerTable from './components/TickerTable';
+import StockChart from './components/StockChart';
 import './App.css';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       </header>
       <main>
         <TickerTable />
+        <StockChart />
       </main>
     </div>
   );

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kartikkumarsahoo.github.io/ticker-app",
   "dependencies": {
+    "chartist": "^0.11.0",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-chartist": "^0.13.3",

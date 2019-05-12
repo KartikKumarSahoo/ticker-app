@@ -84,3 +84,15 @@ table td {
   width: 40%;
   min-width: 300px;
 }
+
+.upward .ct-series-a .ct-area {
+  fill: #00ad5f;
+}
+
+.upward .ct-series-a .ct-line {
+  stroke: green;
+}
+
+.upward .ct-series-a .ct-point {
+  stroke: #00ad5f;
+}

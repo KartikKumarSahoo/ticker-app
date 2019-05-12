@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ticker-app/precache-manifest.a252d19f21751781af1fd78e4ee34401.js"
+  "/ticker-app/precache-manifest.8b59a84e7288de107aa0bd01c71bb144.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,87 +1,51 @@
-import React, { Component } from 'react';
-import { STOCKS_WS_URL, ERROR_MESSAGE } from '../constants';
+import React from 'react';
 import { timeSince } from '../utils';
+import PropTypes from 'prop-types';
 
-class TickerTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+function TickerTable(props) {
+  const { error, data = {}, onStockClick = () => {} } = props;
 
-    this.initWebSocket();
-  }
+  // Show error message when connection fails.
+  if (error) return <div className="error">{error}</div>;
 
-  initWebSocket = () => {
-    if (!('WebSocket' in window)) return;
+  // Don't show anything till first message is received.
+  if (Object.keys(data).length === 0) return null;
 
-    try {
-      const socket = new WebSocket(STOCKS_WS_URL);
-      // Connection opened
-      socket.addEventListener('open', () => {
-        socket.send('Hello Server!');
-      });
-
-      // Handle socket connection error
-      socket.addEventListener('error', () => {
-        this.setState({ error: ERROR_MESSAGE });
-      });
-
-      // Listen for messages
-      socket.addEventListener('message', event => {
-        // console.log('Message from server ', event.data);
-        JSON.parse(event.data).forEach(data => {
-          let [name, price] = data;
-          price = price.toFixed(2);
-          const { price: oldPrice } = this.state[name] || {};
-
-          this.setState({
-            [name]: {
-              price: +price,
-              updatedAt: Date.now(),
-              growth: oldPrice ? (oldPrice > price ? 'down' : 'up') : null,
-            },
-          });
-        });
-      });
-    } catch (err) {
-      console.error('Error', err);
-      this.setState({ error: ERROR_MESSAGE });
-    }
-  };
-
-  render() {
-    const { error } = this.state;
-    // Show error message when connection fails.
-    if (error) return <div className="error">{error}</div>;
-
-    // Don't show anything till first message is received.
-    if (Object.keys(this.state).length === 0) return null;
-
-    return (
-      <table className="ticker-table-wrapper">
-        <thead>
-          <tr>
-            <th className="name">Ticker</th>
-            <th className="price">Price</th>
-            <th className="time">Last Updated</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(this.state).map(name => {
-            const { price, updatedAt, growth } = this.state[name];
-            return (
-              <tr className={growth ? '' : 'new'} key={name}>
-                <td className="name">{name}</td>
-                <td className={`price ${growth || ''}`}>{price}</td>
-                <td className="time">{timeSince(updatedAt)}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    );
-  }
+  return (
+    <table className="ticker-table-wrapper">
+      <thead>
+        <tr>
+          <th className="name">Ticker</th>
+          <th className="price">Price</th>
+          <th className="time">Last Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(data).map(name => {
+          const { price, updatedAt, growth } = data[name];
+          return (
+            <tr className={growth ? '' : 'new'} key={name}>
+              <td
+                className="name link"
+                title="Click to see this stock's history"
+                onClick={e => onStockClick(name, e)}
+              >
+                {name}
+              </td>
+              <td className={`price ${growth || ''}`}>{price}</td>
+              <td className="time">{timeSince(updatedAt)}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }
 
-TickerTable.propTypes = {};
+TickerTable.propTypes = {
+  data: PropTypes.object.isRequired,
+  error: PropTypes.string,
+  onStockClick: PropTypes.func.isRequired,
+};
 
 export default TickerTable;

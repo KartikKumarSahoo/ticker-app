@@ -85,6 +85,38 @@ table td {
   min-width: 300px;
 }
 
+.link {
+  color: blue;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.sparkline-chart {
+  position: relative;
+}
+
+.sparkline-chart h2 {
+  font-size: 20px;
+  margin: 50px 0 20px;
+}
+
+.sparkline-chart .stock-name {
+  color: #00ad5f;
+  text-transform: uppercase;
+}
+
+.close {
+  position: absolute;
+  font-size: 30px;
+  right: 20px;
+  top: 0;
+  cursor: pointer;
+  color: #7979e4;
+}
+
 .upward .ct-series-a .ct-area {
   fill: #00ad5f;
 }

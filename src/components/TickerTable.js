@@ -14,7 +14,6 @@ class TickerTable extends Component {
     if (!('WebSocket' in window)) return;
 
     const socket = new WebSocket(STOCKS_WS_URL);
-
     // Connection opened
     socket.addEventListener('open', event => {
       socket.send('Hello Server!');
@@ -40,7 +39,6 @@ class TickerTable extends Component {
   };
 
   render() {
-    // console.log(this.state);
     if (Object.keys(this.state).length === 0) return null;
 
     return (

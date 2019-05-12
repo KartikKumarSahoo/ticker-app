@@ -2,32 +2,77 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #676767;
+  min-height: 50px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 20px;
   color: white;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  margin: 20px 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table {
+  border-collapse: collapse;
+}
+
+.ticker-table-wrapper {
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+table th {
+  font-size: 15px;
+  color: #00ad5f;
+  line-height: 1.4;
+  text-transform: uppercase;
+  background-color: #393939;
+  padding: 18px 0;
+}
+
+table td {
+  font-size: 15px;
+  color: #808080;
+  line-height: 2;
+  background-color: #222222;
+  padding: 5px 0;
+}
+
+.ticker-table-wrapper .name {
+  width: 33%;
+  min-width: 100px;
+  text-transform: uppercase;
+}
+
+.ticker-table-wrapper .price {
+  width: 27%;
+  min-width: 100px;
+}
+
+.price.down::after {
+  content: "\2193";
+  padding-left: 5px;
+  color: red;
+}
+
+.price.up::after {
+  content: "\2191";
+  padding-left: 5px;
+  color: green;
+}
+
+.ticker-table-wrapper .time {
+  width: 40%;
+  min-width: 300px;
 }
